@@ -5,14 +5,14 @@
 
 [![Institution - Sharif University of Technology](https://img.shields.io/badge/Sharif_University_of_Technology-Department_of_Mechanical_Engineering-003366?style=for-the-badge&logo=googlescholar&logoColor=white)](http://mech.sharif.edu/)
 [![Tool - HTRI Xist](https://img.shields.io/badge/Simulation-HTRI_Xist_v7.3.2-orange?style=for-the-badge&logo=ansys&logoColor=white)](#summary-of-thermal-hydraulic-performance)
-[![Documentation - LaTeX](https://img.shields.io/badge/Typeset-LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white)](./Heat_Exchanger.tex)
+[![Documentation - LaTeX](https://img.shields.io/badge/Typeset-LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white)](./report/Heat%20Exchanger.tex)
 [![Standard - TEMA / ASME](https://img.shields.io/badge/Standard-TEMA_Class_R_%7C_ASME_VIII-darkred?style=for-the-badge)](#engineering-decisions--basis-of-design)
 
 <p align="center">
   <b>A rigorous thermal-hydraulic design and debottlenecking analysis for a shell-and-tube reboiler in the gas sweetening plant of Ilam Gas Refinery.</b>
 </p>
 
-[📄 View Full Report (PDF)](./Design_of_a_Heat_Exchanger.pdf) • [📝 View LaTeX Source](./Heat_Exchanger.tex) • [📊 Base TEMA Sheet](#base-case-specification-sheet) • [📈 Debottlenecked TEMA Sheet](#debottlenecked-case-specification-sheet)
+[📄 View Full Report (PDF)](./report/Design_of_a_Heat_Exchanger.pdf) • [📝 View LaTeX Source](./report/Heat%20Exchanger.tex) • [📊 Base TEMA Sheet](#base-case-specification-sheet) • [📈 Debottlenecked TEMA Sheet](#debottlenecked-case-specification-sheet)
 
 </div>
 
@@ -21,7 +21,7 @@
 ## 📑 Table of Contents
 - [Project Overview](#project-overview)
 - [Engineering Decisions & Basis of Design](#engineering-decisions--basis-of-design)
-  - [Fluid Allocation](#1-fluid-allocation-justification)
+  - [Fluid Allocation Justification](#1-fluid-allocation-justification)
   - [Exchanger Architecture](#2-exchanger-architecture-tema-bem)
   - [Metallurgy & Geometry](#3-metallurgy--geometry)
 - [Summary of Thermal-Hydraulic Performance](#summary-of-thermal-hydraulic-performance)
@@ -55,12 +55,12 @@ In natural gas sweetening units, thermal energy must be continuously supplied to
   * Clean, non-fouling condensing steam ($R_f = 0.00018\text{ m}^2\text{K/W}$) across horizontal tube bundles delivers an exceptionally high outer convective film coefficient ($h_o \approx 16{,}000\text{ W/m}^2\text{K}$)[cite: 5, 6].
 
 ### 2. Exchanger Architecture (TEMA BEM)
-* **Front Head (Type B - Bonnet):** Economical and rigid closure. Frequent internal physical cleaning of tubes is unnecessary in continuous sour service; chemical cleaning is preferred[cite: 5, 6].
+* **Front Head (Type B - Bonnet):** Economical and rigid closure[cite: 5, 6]. Frequent internal physical cleaning of tubes is unnecessary in continuous sour service; chemical cleaning is preferred[cite: 5, 6].
 * **Shell (Type E - One-Pass):** Classic single-pass arrangement providing optimal counter-current crossflow[cite: 5, 6].
 * **Rear Head (Type M - Fixed Tubesheet):** Fixed tubesheets feature the lowest capital cost[cite: 5, 6]. Most importantly, eliminating internal floating-head packings removes any risk of toxic $\text{NH}_3$ / Benzene leakage into the plant utility steam condensate line[cite: 5, 6].
 
 ### 3. Metallurgy & Geometry
-* **Tube Metallurgy:** Austenitic Stainless Steel 304. *Note: Strictly excludes all copper-based alloys (e.g., admiralty brass, naval brass) due to catastrophic ammonia stress-corrosion cracking (SCC).*[cite: 5, 6]
+* **Tube Metallurgy:** Austenitic Stainless Steel 304 (strictly excludes copper-based alloys due to ammonia stress-corrosion cracking)[cite: 5, 6].
 * **Shell Metallurgy:** Structural Carbon Steel[cite: 5, 6].
 * **Tube Dimensions:** $\text{OD} = 22.225\text{ mm}$ ($7/8\text{ in}$), wall thickness $t_w = 2.108\text{ mm}$, active length $L = 6.706\text{ m}$[cite: 5, 6].
 * **Bundle Layout:** $30^\circ$ Triangular pitch ($\text{Pitch Ratio} = 1.33$, $\text{Pitch} = 29.56\text{ mm}$) to yield maximum heat transfer area per unit shell diameter[cite: 5, 6].
@@ -128,7 +128,7 @@ During iterative convergence in HTRI Xist, several warnings were addressed[cite:
 *(Throughput: 25,000 kg/hr | Heat Duty: 3.41 MW | 285 Tubes)*[cite: 5, 6]
 
 <div align="center">
-  <img src="./figures/f1.png" alt="HTRI Base Case TEMA Sheet" width="85%"/>
+  <img src="./Figures/f1.png" alt="HTRI Base Case TEMA Sheet" width="85%"/>
 </div>
 
 ---
@@ -137,7 +137,7 @@ During iterative convergence in HTRI Xist, several warnings were addressed[cite:
 *(Throughput: 30,000 kg/hr | Heat Duty: 4.09 MW | 333 Tubes)*[cite: 5, 6]
 
 <div align="center">
-  <img src="./figures/f2.png" alt="HTRI Debottlenecked Case TEMA Sheet" width="85%"/>
+  <img src="./Figures/f2.png" alt="HTRI Debottlenecked Case TEMA Sheet" width="85%"/>
 </div>
 
 ---
@@ -147,12 +147,14 @@ During iterative convergence in HTRI Xist, several warnings were addressed[cite:
 ```text
 Project_01_Reboiler/
 │
-├── figures/                               # Simulation data sheets & plots
+├── Figures/                               # Simulation data sheets & plots
 │   ├── f1.png                             # HTRI Specification Sheet (Base Case)
 │   ├── f2.png                             # HTRI Specification Sheet (Debottlenecked Case)
 │   ├── f3.png                             # HTRI Base Case Output Summary
 │   └── f4.png                             # HTRI Debottlenecked Output Summary
 │
-├── Design_of_a_Heat_Exchanger.pdf         # Complete compiled technical report
-├── Heat_Exchanger.tex                     # Professional LaTeX source code
+├── report/
+│   ├── Design_of_a_Heat_Exchanger.pdf     # Complete compiled technical report
+│   └── Heat Exchanger.tex                 # Professional LaTeX source code
+│
 └── README.md                              # Technical documentation & project portfolio
