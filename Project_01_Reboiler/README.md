@@ -12,7 +12,7 @@
   <b>A rigorous thermal-hydraulic design and debottlenecking analysis for a shell-and-tube reboiler in the gas sweetening plant of Ilam Gas Refinery.</b>
 </p>
 
-[📄 View Full Report (PDF)](./report/Design_of_a_Heat_Exchanger.pdf) • [📝 View LaTeX Source](./report/Heat%20Exchanger.tex) • [📊 Base TEMA Sheet](#base-case-specification-sheet) • [📈 Debottlenecked TEMA Sheet](#debottlenecked-case-specification-sheet)
+[📄 View Full Report (PDF)](./report/Design_of_a_Heat_Exchanger.pdf) • [📝 View LaTeX Source](./report/Heat%20Exchanger.tex) 
 
 </div>
 
