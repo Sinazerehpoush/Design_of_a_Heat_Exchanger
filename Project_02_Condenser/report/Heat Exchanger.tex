@@ -1,0 +1,281 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{siunitx}
+
+\geometry{margin=1in}
+
+\title{\textbf{Project 2: Thermal-Hydraulic Design and Metallurgical Evaluation of a Seawater Steam Surface Condenser} \\[0.5em] \large Sharif University of Technology \\ Department of Mechanical Engineering}
+\author{Sina Zerehposh -- 401170829}
+\date{Course Instructor: Dr. Pakzad \\ Winter 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In coastal desalination infrastructure and coastal thermal power generating stations, seawater-cooled surface condensers represent critical thermal nodes governing overall plant efficiency and lifecycle generation costs. While copper-based alloys such as Aluminum-Brass have historically dominated seawater tubing applications due to high intrinsic thermal conductivity and biofouling resistance, their susceptibility to erosion-corrosion, sulfide attack, and progressive corrosion-product scaling poses substantial operational burdens. 
+
+This project delivers a comprehensive design and comparative metallurgical evaluation for a 24.0~MW steam condenser using \textbf{HTRI Xist (TEMA AES)}. A baseline Aluminum-Brass configuration ($1.245\text{ mm}$ wall) is systematically contrasted against Titanium Grade~2 in both standard ($1.245\text{ mm}$) and thin-wall ($0.559\text{ mm}$) profiles. Furthermore, conventional TEMA fouling standards are critically reviewed against Heat Exchange Institute (HEI) standards. Finally, an analytical thermal resistance model formulated in MATLAB is evaluated against HTRI results, unveiling a 10.3\% underestimation driven by internal tubeside velocity attenuation and convective degradation ($h_i \propto V^{0.8}$).
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction and Theoretical Metallurgy Framework}
+
+The core task involves the thermal-hydraulic design of a surface condenser condensing $40{,}198\text{ kg/h}$ of exhaust steam at $154.2^\circ\text{C}$ ($500\text{ kPa}$) using raw seawater entering at $18.0^\circ\text{C}$ and exiting at $42.5^\circ\text{C}$.
+
+\subsection{Degradation and Corrosion Mechanisms: Copper Alloys vs. Titanium}
+
+\begin{itemize}
+    \item \textbf{Copper-Based Alloys (Aluminum-Brass, Cu-Ni):} 
+    Copper alloys rely entirely on a delicate cuprous oxide ($\text{Cu}_2\text{O}$) passivating film. Under dynamic seawater turbulence exceeding a critical threshold ($\approx 2.0\text{--}3.0\text{ m/s}$), this protective film shears off, triggering accelerated \textit{erosion-corrosion}. Furthermore, in polluted coastal seawater containing dissolved sulfides, copper oxides convert into non-adherent copper sulfides, inducing catastrophic localized pitting.
+    
+    \item \textbf{Titanium Grade 2:} 
+    Titanium instantly oxidizes in aqueous media to form a tenacious, self-healing rutile/anatase titanium dioxide ($\text{TiO}_2$) passive layer. This ceramic-grade film resists dynamic fluid velocities beyond $20\text{ m/s}$, granting complete immunity to pitting, crevice corrosion, and erosion-corrosion in raw seawater across industrial temperature operating windows.
+\end{itemize}
+
+\subsection{Fouling Dynamics and Resistance Mitigation}
+
+\begin{itemize}
+    \item \textbf{Aluminum-Brass:} Cuprous ions ($\text{Cu}^{2+}$) exert a biocidal effect that retards macro-biological attachment (e.g., barnacles, algae). However, progressive substrate corrosion forms heavy, porous scale composed of basic copper salts and carbonates, which drastically impedes conductive heat transport.
+    
+    \item \textbf{Titanium:} Titanium lacks biocidal surface activity. However, it exhibits a non-polar, low surface energy state that prevents scale adhesion. Moreover, the superior mechanical integrity of titanium allows continuous high-velocity flow and the deployment of continuous mechanical sponge-ball cleaning systems (e.g., Taprogge systems), sustaining an active \textit{self-cleaning} shear effect.
+\end{itemize}
+
+\subsection{Critique of Standard TEMA Seawater Fouling Tables}
+
+Standard TEMA tables tabulate seawater fouling factors solely as functions of bulk temperature and velocity, ignoring tube metallurgy. This is flawed for seawater applications:
+\begin{enumerate}
+    \item \textbf{Corrosion Products as Internal Fouling:} On copper alloy tubing, the tube material actively corrodes, generating internal scale resistance ($R_f$). Conversely, titanium exhibits near-zero metal loss ($< 0.001\text{ mm/year}$), completely eliminating the corrosion fouling component.
+    \item \textbf{Surface Energy and Roughness:} Titanium retains a smooth, glass-like surface, suppressing particulate sedimentation, whereas copper alloys develop high surface roughness that promotes scale nucleation.
+    \item \textbf{Velocity Limits:} TEMA bases its default figures on velocities of $\le 1.5\text{ m/s}$. Titanium permits operational velocities of $3\text{--}4\text{ m/s}$, drastically lowering fouling deposition rates.
+\end{enumerate}
+Consequently, specialized condenser standards (e.g., \textbf{HEI Standards for Steam Surface Condensers}) recommend reducing design fouling resistances by roughly $50\%$ when replacing copper alloys with titanium ($0.00040 \to 0.00018\text{--}0.00020\text{ m}^2\text{K/W}$).
+
+\section{Exchanger Architecture and Parameter Selection}
+
+\begin{itemize}
+    \item \textbf{TEMA Type AES Configuration:}
+    \begin{itemize}
+        \item \textit{Front Head (Type A):} Removable bonnet cover allowing straight access for tubeside mechanical rod cleaning without dismantling seawater piping headers.
+        \item \textit{Shell (Type E):} Standard single-pass crossflow condensing shell.
+        \item \textit{Rear Head (Type S - Floating Head with Backing Device):} Accommodates severe differential thermal expansion between carbon steel shell and tubes subjected to high terminal thermal gradients ($\Delta T = 154.2^\circ\text{C} - 18.0^\circ\text{C} = 136.2^\circ\text{C}$).
+    \end{itemize}
+    \item \textbf{Bundle Geometry:} $30^\circ$ Triangular pitch provides maximal packaging density for clean condensing steam.
+    \item \textbf{Baffling Scheme:} No-Tubes-In-Window (NTIW) segmental baffles with 25\% diametral cut and 700~mm central spacing were implemented to suppress acoustic resonance and crossflow tube bundle vibration while keeping shell pressure drop well beneath the 25.0~kPa ceiling.
+\end{itemize}
+
+\section{Thermal-Hydraulic Design \& Metallurgical Evaluation}
+
+\subsection{Material Comparison: Base Aluminum-Brass vs. Standard Titanium}
+
+The base exchanger was sized in HTRI \textbf{Design Mode} using Aluminum-Brass ($k \approx 100\text{ W/m}\cdot\text{K}$, $t_w = 1.245\text{ mm}$). Subsequently, the shell envelope ($D_{\text{shell}} = 1168.4\text{ mm}$) was locked in \textbf{Rating Mode} to evaluate standard Titanium Grade 2 ($k \approx 21.9\text{ W/m}\cdot\text{K}$, $t_w = 1.245\text{ mm}$).
+
+\begin{table}[H]
+\centering
+\small
+\caption{Performance comparison: Aluminum-Brass vs. Standard Titanium (Fixed Shell Diameter).}
+\label{tab:mat_comp}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Design Parameter} & \textbf{Aluminum-Brass} & \textbf{Titanium (Grade 2)} & \textbf{Engineering Variation} \\
+\midrule
+Execution Mode & Design Mode & Rating Mode & Fixed Envelope \\
+Shell Inside Diameter & 1168.4 mm & 1168.4 mm & Constant \\
+Tube Metallurgy & Al-Brass (78Cu, 2Al) & Titanium Grade 2 & Lower Conductivity \\
+Tube Wall Thickness & 1.245 mm & 1.245 mm & Constant \\
+Total Tube Count ($N_t$) & 943 & 1184 & $+25.5\%$ ($+241$ tubes) \\
+Number of Tube Passes & 2 passes & 1 pass & Reconfigured \\
+Overall Coefficient ($U$) & $1531.2\text{ W/m}^2\text{K}$ & $1210.3\text{ W/m}^2\text{K}$ & $-21.0\%$ \\
+Tube Metal Resistance & 1.97\% & 7.99\% & $\approx 4\times$ increase \\
+Effective Area ($A$) & $131.68\text{ m}^2$ & $166.23\text{ m}^2$ & $+26.2\%$ \\
+Tubeside Pressure Drop & 30.77 kPa & 5.16 kPa & $-83.2\%$ \\
+Shellside Pressure Drop & 10.10 kPa & 9.61 kPa & Constant ($<25\text{ kPa}$) \\
+Overdesign Margin & 0.92\% & 0.90\% & Target Matched \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Engineering Discussion:} Due to titanium's low thermal conductivity ($21.9\text{ vs. } 100\text{ W/m}\cdot\text{K}$), wall conductive resistance quadruples ($1.97\% \to 7.99\%$). Delivering the 24.0~MW duty within identical shell dimensions requires adding 241 tubes, demonstrating that simple 1:1 metallurgy replacement imposes a severe capital penalty.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{f1.png}
+    \caption{HTRI TEMA Specification Sheet -- Base Aluminum-Brass Design ($t_w = 1.245\text{ mm}$, 943 Tubes).}
+    \label{fig:tema_al_brass}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{f2.png}
+    \caption{HTRI TEMA Specification Sheet -- Standard-Gauge Titanium Design ($t_w = 1.245\text{ mm}$, 1184 Tubes).}
+    \label{fig:tema_ti_standard}
+\end{figure}
+
+\subsection{Optimization via Thin-Wall Titanium ($t_w = 0.559\text{ mm}$)}
+
+Titanium's high tensile and fatigue strength permits utilizing thin-wall tubing ($0.559\text{ mm} \approx 500\,\mu\text{m}$) without risking hydraulic collapse.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Optimization impact: Standard Titanium vs. Thin-Wall Titanium.}
+\label{tab:thin_ti}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Parameter} & \textbf{Standard Titanium} & \textbf{Thin-Wall Titanium} & \textbf{Net Benefit} \\
+\midrule
+Tube Thickness ($t_w$) & 1.245 mm & 0.559 mm & $-55.1\%$ reduction \\
+Total Tube Count ($N_t$) & 1184 & 1076 & \textbf{108 fewer tubes} \\
+Effective Surface Area & $166.23\text{ m}^2$ & $150.86\text{ m}^2$ & $-9.2\%$ reduction \\
+Overall Coefficient ($U$) & $1210.3\text{ W/m}^2\text{K}$ & $1334.3\text{ W/m}^2\text{K}$ & $+10.2\%$ enhancement \\
+Metal Wall Resistance & 7.99\% & 3.81\% & Halved bottleneck \\
+Tubeside Pressure Drop & 5.16 kPa & 4.76 kPa & $-7.7\%$ \\
+Tubeside Bulk Velocity & 0.89 m/s & 0.84 m/s & Safe low erosion \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Quantitative Comparison vs. Base Al-Brass:}
+\begin{equation}
+\Delta N = N_{\text{Thin-Ti}} - N_{\text{Al-Brass}} = 1076 - 943 = +133\text{ tubes} \quad (+14.1\%)
+\end{equation}
+Thinning the tube wall recovers more than half of the area penalty seen in standard-gauge titanium.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{f3.png}
+    \caption{HTRI TEMA Specification Sheet -- Optimized Thin-Wall Titanium Design ($t_w = 0.559\text{ mm}$, 1076 Tubes).}
+    \label{fig:tema_ti_thin}
+\end{figure}
+
+\section{HTRI Runtime Diagnostics and Vibration Analysis}
+
+During execution, four specific warning messages were diagnosed:
+
+\begin{enumerate}
+    \item \textbf{Acoustic Vibration Warning:}  
+    HTRI flagged potential fundamental transverse acoustic resonance driven by high-velocity vapor vortex shedding.  
+    \textit{Resolution:} HTRI recommended installing deresonating baffles at $0.45\times D_{\text{shell}}$. This detunes the acoustic cavity natural frequency without impeding crossflow condensation.
+    
+    \item \textbf{Thermal Conductivity Temperature Limit (Al-Brass):}  
+    Bulk condensing steam temperatures ($154.2^\circ\text{C}$) exceeded the experimental database validation cap of $176.1^\circ\text{F}$ ($80^\circ\text{C}$) for material code 45. Thermal conductivity was clamped at the bound; resulting deviation in $U$ was negligible ($<0.2\%$).
+    
+    \item \textbf{Rear Head Internal Diameter Limitation:}  
+    A geometric check on the Type S floating head indicated tight clearance between the floating tubesheet backing device and shell ID. This is addressed during structural mechanical detailing.
+    
+    \item \textbf{ASME Section VIII Div.~1 Disclaimer:}  
+    Standard HTRI notice declaring vessel wall thicknesses and weights are preliminary estimations and require formal PVElite mechanical verification.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth]{f4.png}
+    \caption{HTRI Xist Runtime Messages and Acoustic Vibration Diagnostics.}
+    \label{fig:htri_warnings}
+\end{figure}
+
+\section{Analytical Validation via MATLAB and Root-Cause Analysis}
+
+An in-house 1D thermal resistance script was deployed to predict the required tube count when transitioning from Al-Brass to thin-wall Titanium:
+
+\begin{equation}
+\frac{1}{U_o} = R_{\text{wall}} + R_{\text{other}} = \frac{D_o \ln(D_o/D_i)}{2 k} + \frac{D_o}{D_i} R_{\text{conv,in}} + R_{\text{conv,out}} + R_{\text{foul}}
+\end{equation}
+
+Assuming $R_{\text{other}}$ remains invariant and holding thermal duty constant:
+\begin{equation}
+N_{\text{est}} = N_{\text{base}} \times \left( \frac{U_{\text{base}}}{U_{\text{new}}} \right)
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{MATLAB 1D analytical model vs. HTRI multi-segment rating.}
+\label{tab:matlab_results}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Al-Brass (Base)} & \textbf{\shortstack{Titanium\\(MATLAB)}} & \textbf{\shortstack{Titanium\\(HTRI Actual)}} \\
+\midrule
+Overall Coefficient ($U$) & \SI{1531.20}{W/m^2.K} & \SI{1497.49}{W/m^2.K} & \SI{1334.30}{W/m^2.K} \\
+Required Tube Count ($N_t$) & 943 & 965 & 1076 \\
+Model Error Relative to HTRI & --- & \textbf{$-10.32\%$} & Benchmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{f5.png}
+    \caption{MATLAB Command Window Output: Analytical Sizing Discrepancy ($\text{Error} = 10.32\%$).}
+    \label{fig:matlab_output}
+\end{figure}
+
+\subsection{Root-Cause Diagnosis of the 10.3\% Underestimation}
+
+The MATLAB script underestimated tube count by 111 tubes due to coupled \textbf{thermal-hydraulic feedback}:
+\begin{enumerate}
+    \item \textbf{Internal Diameter Expansion:} Thinning the tube wall from $1.245\text{ mm}$ to $0.559\text{ mm}$ under a fixed OD ($19.05\text{ mm}$) expanded the inner diameter:
+    \begin{equation}
+    D_{i,\text{Al-Brass}} = 16.56\text{ mm} \quad \longrightarrow \quad D_{i,\text{Thin-Ti}} = 17.93\text{ mm}
+    \end{equation}
+    \item \textbf{Velocity Attenuation:} Flow cross-sectional area per tube expanded by $17.3\%$. With total mass throughput held constant, seawater bulk velocity dropped:
+    \begin{equation}
+    V = \frac{\dot{m}}{\rho A_{\text{flow}}} \implies V_{\text{Std-Ti}} = 0.89\text{ m/s} \quad \longrightarrow \quad V_{\text{Thin-Ti}} = 0.84\text{ m/s}
+    \end{equation}
+    \item \textbf{Convective Heat Transfer Degradation:} Seawater forced convection obeys the Dittus-Boelter / Sieder-Tate correlation:
+    \begin{equation}
+    h_i \propto \frac{k}{D_i} Re^{0.8} \propto \frac{V^{0.8}}{D_i^{0.2}}
+    \end{equation}
+    The drop in velocity combined with the expanded diameter degraded $h_i$. 
+\end{enumerate}
+Because the MATLAB script assumed $R_{\text{other}}$ was constant, it overestimated $U$ ($1497.5\text{ vs. } 1334.3\text{ W/m}^2\text{K}$), yielding an unconservative tube count estimate. This demonstrates that tube gauge modifications cannot be treated as isolated conductive perturbations.
+
+\section{Summary and Conclusions}
+
+\begin{enumerate}
+    \item Substituting Aluminum-Brass with standard-gauge Titanium Grade 2 imposes a $25.5\%$ tube count penalty ($943 \to 1184$ tubes) due to titanium's lower conductivity ($21.9\text{ W/m}\cdot\text{K}$).
+    \item Sizing with thin-wall titanium ($0.559\text{ mm}$) recovers $45\%$ of this surface penalty, requiring 1076 tubes ($+14.1\%$ over base), cutting metal resistance to $3.81\%$ while yielding complete immunity to seawater erosion-corrosion.
+    \item Coupling 1D conduction with internal hydraulics is critical; internal diameter enlargement attenuates velocity, degrading internal convection ($h_i \propto V^{0.8}$) by $10.3\%$.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{plymouth}
+Plymouth Tube Company, \textit{Titanium vs. Copper Nickel for Seawater Heat Exchangers}, Technical White Paper, Warrenville, IL, USA.
+
+\bibitem{hei}
+Heat Exchange Institute (HEI), \textit{Standards for Steam Surface Condensers}, 12th Edition, Cleveland, OH, USA.
+
+\bibitem{powell}
+C.~A. Powell and H.~T. Michels, ``Corrosion and Fouling of Cupronickel and Titanium in Seawater Cooling Systems,'' in \textit{NACE International Corrosion Conference}, Houston, TX.
+
+\bibitem{tema}
+Tubular Exchanger Manufacturers Association (TEMA), \textit{Standards of the Tubular Exchanger Manufacturers Association}, 10th Edition, TEMA Inc., Tarrytown, NY.
+
+\bibitem{htri}
+HTRI Xchanger Suite, \textit{User Guide and Technical Documentation}, Heat Transfer Research, Inc., Navasota, TX.
+
+\bibitem{perry}
+R.~H. Perry and D.~W. Green, \textit{Perry's Chemical Engineers' Handbook}, 9th Edition, McGraw-Hill, 2018.
+
+\bibitem{corripio}
+A.~B. Corripio, K.~S. Chrien, and L.~B. Evans, ``Estimate Costs of Heat Exchangers and Pressure Vessels,'' \textit{Chemical Engineering}, 1982.
+
+\bibitem{serth}
+R.~W. Serth, \textit{Process Heat Transfer: Principles and Applications}, Elsevier, 2007.
+
+\end{thebibliography}
+
+\end{document}
