@@ -6,7 +6,7 @@
 [![Institution - Sharif University of Technology](https://img.shields.io/badge/Sharif_University_of_Technology-Department_of_Mechanical_Engineering-003366?style=for-the-badge&logo=googlescholar&logoColor=white)](http://mech.sharif.edu/)
 [![Simulation - HTRI Xist](https://img.shields.io/badge/Simulation-HTRI_Xist_v7.3.2-orange?style=for-the-badge&logo=ansys&logoColor=white)](https://github.com/Sinazerehpoush/Design_of_a_Heat_Exchanger)
 [![Documentation - LaTeX](https://img.shields.io/badge/Typeset-LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white)](https://github.com/Sinazerehpoush/Design_of_a_Heat_Exchanger)
-[![Standard - TEMA / ASME / HEI](https://img.shields.io/badge/Standard-TEMA_R%2FE_%7C_ASME_VIII_%7C_HEI-darkred?style=for-the-badge)](https://github.com/Sinazerehpoush/Design_of_a_Heat_Exchanger)
+[![Standard - TEMA / ASME / HEI](https://img.shields.io/badge/Standard-TEMA_Class_R_%7C_ASME_VIII_%7C_HEI-darkred?style=for-the-badge)](https://github.com/Sinazerehpoush/Design_of_a_Heat_Exchanger)
 
 <p align="center">
   <b>A comprehensive professional portfolio featuring rigorous thermal-hydraulic design, rating, debottlenecking, and metallurgical optimization of shell-and-tube heat exchangers.</b>
@@ -50,9 +50,9 @@ This repository contains advanced thermal-hydraulic engineering design projects 
 
 * **Thermal Simulation & Rating:** HTRI Xchanger Suite (v7.3.2)
 * **Numerical & Analytical Modeling:** MATLAB (Object-oriented 1D resistance algorithms)
-* **Typesetting & Documentation:** LaTeX (Professional academic reports with TikZ and PGFplots)
+* **Typesetting & Documentation:** LaTeX (Professional academic reports)
 * **Governing Codes & Standards:** 
-  * Tubular Exchanger Manufacturers Association (TEMA Class R & E)
+  * Tubular Exchanger Manufacturers Association (TEMA Class R)
   * American Society of Mechanical Engineers (ASME Boiler and Pressure Vessel Code, Section VIII Div. 1)
   * Heat Exchange Institute (HEI Standards for Steam Surface Condensers)
 
