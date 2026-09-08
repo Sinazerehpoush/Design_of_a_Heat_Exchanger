@@ -59,5 +59,5 @@ This repository contains advanced thermal-hydraulic engineering design projects 
 ---
 
 <div align="center">
-  <b>Author:</b> Sina Zerehposh • Department of Mechanical Engineering, Sharif University of Technology
+  <b>Author:</b> Sina Zerehpoush • Department of Mechanical Engineering, Sharif University of Technology
 </div>
