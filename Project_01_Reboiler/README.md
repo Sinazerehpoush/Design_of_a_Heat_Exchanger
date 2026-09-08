@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏭 Industrial Reboiler Heat Exchanger Design & Debottlenecking
+# Industrial Reboiler Heat Exchanger Design & Debottlenecking
 ### TEMA BEM Configuration | Sour Hydrocarbon Vaporization
 
 [![Institution - Sharif University of Technology](https://img.shields.io/badge/Sharif_University_of_Technology-Department_of_Mechanical_Engineering-003366?style=for-the-badge&logo=googlescholar&logoColor=white)](http://mech.sharif.edu/)
@@ -12,13 +12,13 @@
   <b>A rigorous thermal-hydraulic design and debottlenecking analysis for a shell-and-tube reboiler in the gas sweetening plant of Ilam Gas Refinery.</b>
 </p>
 
-[📄 View Full Report (PDF)](./report/Design_of_a_Heat_Exchanger.pdf) • [📝 View LaTeX Source](./report/Heat%20Exchanger.tex) 
+[View Full Report (PDF)](./report/Design_of_a_Heat_Exchanger.pdf) • [View LaTeX Source](./report/Heat%20Exchanger.tex)
 
 </div>
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 - [Project Overview](#project-overview)
 - [Engineering Decisions & Basis of Design](#engineering-decisions--basis-of-design)
   - [Fluid Allocation Justification](#1-fluid-allocation-justification)
@@ -34,7 +34,7 @@
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 In natural gas sweetening units, thermal energy must be continuously supplied to the bottom of the regenerator stripper to liberate acid gases ($\text{CO}_2$, $\text{H}_2\text{S}$) and regenerate lean amine. 
 
@@ -44,7 +44,7 @@ In natural gas sweetening units, thermal energy must be continuously supplied to
 
 ---
 
-## ⚙️ Engineering Decisions & Basis of Design
+## Engineering Decisions & Basis of Design
 
 ### 1. Fluid Allocation Justification
 * **Tubeside $\to$ Process Stream:**
@@ -67,7 +67,7 @@ In natural gas sweetening units, thermal energy must be continuously supplied to
 
 ---
 
-## 📊 Summary of Thermal-Hydraulic Performance
+## Summary of Thermal-Hydraulic Performance
 
 The exchanger was designed in **Design Mode** for baseline throughput and subsequently evaluated in **Rating Mode** for capacity expansion (+20% mass flow).
 
@@ -86,7 +86,7 @@ The exchanger was designed in **Design Mode** for baseline throughput and subseq
 
 ---
 
-## 📈 Non-Linear Scaling: Area vs. Throughput
+## Non-Linear Scaling: Area vs. Throughput
 
 A fundamental question addressed in this design is whether surface area requirements scale linearly with flow rate (+20% flow vs. +20% area).
 
@@ -101,27 +101,27 @@ $$\frac{dA}{d\dot{m}} < \frac{A_0}{\dot{m}_0} \quad \implies \quad \Delta A = +1
 
 ---
 
-## 🛠️ HTRI Runtime Messages & Engineering Resolutions
+## HTRI Runtime Messages & Engineering Resolutions
 
 During iterative convergence in HTRI Xist, several warnings were addressed:
 
-* ⚠️ **Terminal Temperature Inconsistency (`Run Failed`):**  
+* **Terminal Temperature Inconsistency (`Run Failed`):**  
   * *Root Cause:* Mismatch in equilibrium flash curves and inconsistent pressure conversions.  
   * *Resolution:* Standardized operating pressure boundary conditions in absolute Pascal units and aligned inlet flash conditions.
-* ⚠️ **Wavy Stratified Flow & Upper Surface Dryout:**  
+* **Wavy Stratified Flow & Upper Surface Dryout:**  
   * *Root Cause:* Low liquid mass flux inside single-pass horizontal tubes causes gravity separation of vapor and liquid, leading to dryout at upper wall perimeters.  
   * *Resolution:* Adopted a **2-pass tube layout**. Increased mixture velocity enforced dispersed annular flow, eliminating dryout warnings.
-* ⚠️ **Shellside Inlet Kinetic Momentum ($\rho V^2 > 1000\text{ kg/m}\cdot\text{s}^2$):**  
+* **Shellside Inlet Kinetic Momentum ($\rho V^2 > 1000\text{ kg/m}\cdot\text{s}^2$):**  
   * *Root Cause:* Inlet LP-steam nozzle jet velocity produced $\rho V^2 = 1199.8\text{ kg/m}\cdot\text{s}^2$, posing flow-induced tube vibration and erosion threats.  
   * *Resolution:* Integrated shell inlet **Impingement Rods** and adjusted bundle entrance ratios in accordance with TEMA Section 5.
-* ⚠️ **Transition Boiling Increment Warning:**  
+* **Transition Boiling Increment Warning:**  
   * *Analysis:* Localized transitions between nucleate and film boiling were reported. Because overall EMTD is moderate ($\approx 38^\circ\text{C}$), peak local fluxes remain well beneath Critical Heat Flux ($q'' < q''_{\text{CHF}}$), ensuring thermal stability.
 
 ---
 
-## 📑 HTRI Specification Sheets
+## HTRI Specification Sheets
 
-### 🔹 Base Case Specification Sheet
+### Base Case Specification Sheet
 *(Throughput: 25,000 kg/hr | Heat Duty: 3.41 MW | 285 Tubes)*
 
 <div align="center">
@@ -130,7 +130,7 @@ During iterative convergence in HTRI Xist, several warnings were addressed:
 
 ---
 
-### 🔹 Debottlenecked Case Specification Sheet
+### Debottlenecked Case Specification Sheet
 *(Throughput: 30,000 kg/hr | Heat Duty: 4.09 MW | 333 Tubes)*
 
 <div align="center">
@@ -139,7 +139,7 @@ During iterative convergence in HTRI Xist, several warnings were addressed:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 Project_01_Reboiler/
