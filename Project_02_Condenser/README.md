@@ -118,19 +118,19 @@ An in-house 1D thermal resistance model predicted a required tube count of **965
 ## HTRI Specification Sheets
 
 <div align="center">
-  <img src="./Figures/f1.png" alt="Base Al-Brass Sheet" width="85%"/>
+  <img src="./figures/f1.png" alt="Base Al-Brass Sheet" width="85%"/>
   <p><i>Figure 1: Base Aluminum-Brass Design Specification Sheet (943 Tubes).</i></p>
   <br/>
-  <img src="./Figures/f2.png" alt="Standard Titanium Sheet" width="85%"/>
+  <img src="./figures/f2.png" alt="Standard Titanium Sheet" width="85%"/>
   <p><i>Figure 2: Standard-Gauge Titanium Design Specification Sheet (1184 Tubes).</i></p>
   <br/>
-  <img src="./Figures/f3.png" alt="Thin-Wall Titanium Sheet" width="85%"/>
+  <img src="./figures/f3.png" alt="Thin-Wall Titanium Sheet" width="85%"/>
   <p><i>Figure 3: Optimized Thin-Wall Titanium Specification Sheet (1076 Tubes).</i></p>
   <br/>
-  <img src="./Figures/f4.png" alt="HTRI Runtime Messages" width="85%"/>
+  <img src="./figures/f4.png" alt="HTRI Runtime Messages" width="85%"/>
   <p><i>Figure 4: HTRI Runtime Messages and Acoustic Vibration Analysis.</i></p>
   <br/>
-  <img src="./Figures/f5.png" alt="MATLAB Command Output" width="85%"/>
+  <img src="./figures/f5.png" alt="MATLAB Command Output" width="85%"/>
   <p><i>Figure 5: MATLAB Command Window Output (10.32% Model Discrepancy).</i></p>
 </div>
 
