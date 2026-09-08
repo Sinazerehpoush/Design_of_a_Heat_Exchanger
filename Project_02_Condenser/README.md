@@ -12,8 +12,7 @@
   <b>A comprehensive thermal-hydraulic design and comparative metallurgical evaluation of a 24.0 MW seawater-cooled steam surface condenser using HTRI Xist and MATLAB.</b>
 </p>
 
-[View Full Report (PDF)](./report/Mbaddel%20project%202%20Rep.pdf) • [View LaTeX Source](./report/Mbaddel%20project%202.tex)
-</div>
+[View Full Report (PDF)](./report/Design_of_a_Heat_Exchanger.pdf) • [View LaTeX Source](./report/Heat%20Exchanger.tex)</div>
 
 ---
 
