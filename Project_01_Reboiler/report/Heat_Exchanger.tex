@@ -1,0 +1,487 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{longtable}
+
+\geometry{margin=1in}
+
+\title{\textbf{Project 1: Design of a Heat Exchanger} \\[0.3em] \large Sharif University of Technology \\ Department of Mechanical Engineering}
+\author{Sina Zerehposh -- 401170829}
+\date{Course Instructor: Dr. Pakzad \\ Winter 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction and Process Description}
+
+The Ilam Gas Refinery is responsible for treating sour gas and separating impurities such as CO$_2$ and H$_2$S. In the gas sweetening unit, in order to regenerate the solvent (amine) and separate the acid gases, heat must be supplied at the bottom of the regeneration column (stripper).
+
+The objective of this project is to design a Reboiler-type heat exchanger that vaporizes the process fluid (consisting of 50\% water, 25\% ammonia, and 25\% benzene by weight) using low-pressure steam (LP-Steam).
+
+\section{Basis for Selection of Design Parameters (Part A)}
+
+In this section, the geometric and operational parameters of the exchanger chosen by the designer are described, along with their technical justification based on engineering standards (TEMA and API) and operating conditions.
+
+\subsection{Fluid Allocation}
+
+Selecting the flow path of each fluid (shell side or tube side) is one of the most critical design steps. In this project:
+
+\begin{itemize}
+\item \textbf{Tube Side: Process Fluid}
+\begin{itemize}
+\item \textit{Reason 1 (Corrosion):} The process fluid contains 25\% ammonia, which exhibits strong corrosiveness. Controlling corrosion inside the tubes by selecting an appropriate resistant tube metallurgy is far more economical than fabricating the entire pressure shell from expensive corrosion-resistant alloys.
+\item \textit{Reason 2 (Pressure):} The operating pressure of the process fluid (7.0~bar) is higher than that of the heating steam (3.5~bar). Standard practice dictates that higher-pressure fluids should flow inside the tubes to minimize the required shell wall thickness and vessel fabrication cost.
+\end{itemize}
+\item \textbf{Shell Side: LP-Steam}
+\begin{itemize}
+\item \textit{Reason:} Steam is a clean, non-corrosive fluid with low viscosity. Condensation of steam across the external surfaces of the bundle provides an extremely high convective heat transfer coefficient and exhibits a minimal fouling factor (approximately 0.00018~m$^2$K/W).
+\end{itemize}
+\end{itemize}
+
+\subsection{Exchanger Type Selection}
+
+Based on the TEMA standard, a \textbf{BEM}-type heat exchanger was selected:
+
+\begin{itemize}
+\item \textbf{Front Head -- Type B (Bonnet):} The simplest and most economical header type. Since frequent internal inspection of the tubes is not necessary for this service, the bolted bonnet provides an optimal and secure closure.
+\item \textbf{Shell -- Type E (One Pass):} The standard single-pass shell configuration for phase-change and single-phase industrial thermal duties.
+\item \textbf{Rear Head -- Type M (Fixed Tubesheet):} Since the shellside fluid (condensing steam) is exceptionally clean with minimal fouling tendency, there is no operational need for bundle pullout for mechanical cleaning (chemical cleaning is fully sufficient). Fixed-tubesheet exchangers feature the lowest capital cost, and due to the complete absence of internal floating-head gaskets, internal leakage risks of toxic ammonia and volatile benzene are eliminated, ensuring safe high-pressure containment.
+\end{itemize}
+
+\subsection{Material Selection}
+
+\begin{itemize}
+\item \textbf{Tube Material:} Austenitic Stainless Steel 304 (18Cr, 8Ni)
+
+\textit{Justification:} The presence of ammonia in the process fluid strictly rules out the use of copper-based alloys (such as brass or bronze), as ammonia aggressively attacks copper alloys via stress corrosion and dissolution. Stainless Steel 304 provides proven corrosion immunity in hot ammonia-water-benzene environments.
+
+\item \textbf{Shell Material:} Carbon Steel
+
+\textit{Justification:} The shell envelope contacts only utility steam, which is non-corrosive under normal water treatment. Carbon steel provides maximum structural strength at minimal economic cost.
+\end{itemize}
+
+\subsection{Tube Geometric Specifications and Layout}
+
+\begin{itemize}
+\item \textbf{Tube Outer Diameter and Thickness:} $\text{OD} = 22.225$~mm (7/8 inch), average wall thickness $t_w = 2.108$~mm. This geometry represents an established refinery standard that provides an ideal trade-off between heat transfer area, mechanical rigidity, and hydraulic pressure drop.
+\item \textbf{Tube Length:} 6.706~m. Sizing with longer tubes reduces the shell internal diameter, resulting in a slimmer, longer vessel that significantly reduces fabrication and flange costs compared to large-diameter shells.
+\item \textbf{Tube Layout Pattern:} $30^\circ$ Triangular pitch.
+
+\textit{Justification:} A $30^\circ$ triangular pitch provides the maximum packing density and highest heat transfer area per unit volume. Because mechanical lane cleaning on the shell side is not required for condensing steam, a square layout (which introduces excessive dead space) is unnecessary.
+\item \textbf{Pitch Ratio:} 1.33 ($\text{Pitch} = 29.559$~mm). TEMA requires a minimum center-to-center pitch ratio of 1.25. A ratio of 1.33 ensures adequate ligament thickness for reliable mechanical tube expansion into the tubesheet.
+\end{itemize}
+
+\subsection{Baffle Geometry}
+
+\begin{itemize}
+\item \textbf{Type:} Single-Segmental Carbon Steel baffles
+\item \textbf{Baffle Cut:} 25\% diametral cut
+\item \textbf{Spacing:} Central spacing of approximately 233~mm (24 crosspasses)
+\end{itemize}
+
+This layout was selected to promote crossflow across the condensing vapor while providing structural support to eliminate flow-induced acoustic and mechanical vibrations.
+
+\section{Summary of Design Operating Conditions}
+
+Table~\ref{tab:operating_conditions} summarizes the thermodynamic and operational boundary conditions applied in HTRI based on project criteria and engineering decisions.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Parameter} & \textbf{Tube Side (Process Fluid)} & \textbf{Shell Side (LP-Steam)} \\
+\midrule
+Mass Flow Rate & 25{,}000 kg/hr & 5646.8 kg/hr (Calculated) \\
+Temperature (In $\to$ Out) & $70.00^\circ\text{C} \to 111.33^\circ\text{C}$ & $138.94^\circ\text{C} \to 137.61^\circ\text{C}$ \\
+Operating Pressure & 7.0 bar (700 kPa) & 3.5 bar (350 kPa) \\
+Vapor Fraction ($x_{\text{in}} \to x_{\text{out}}$) & $0.0 \to 0.50$ (Boiling) & $1.0 \to 0.0$ (Condensing) \\
+Fouling Factor & 0.000350 m$^2$K/W & 0.000180 m$^2$K/W \\
+Design Pressure & 22 bar (2200 kPaG) & 10 bar (1000 kPaG) \\
+Design Temperature & $200^\circ\text{C}$ & $150^\circ\text{C}$ \\
+Number of Tube Passes & 2 passes & 1 pass \\
+\bottomrule
+\end{tabular}
+\caption{Summary of process boundary conditions and operational inputs.}
+\label{tab:operating_conditions}
+\end{table}
+
+\textbf{Note on the Number of Tube Passes:} Although a single tube pass was initially assumed as a baseline, the final design incorporates 2 tube passes. This configuration increases tubeside fluid velocity, enhances the boiling heat transfer coefficient, and mitigates stratified flow and localized film boiling risks.
+
+\subsection{Conclusion of Part A}
+
+Based on the parameters above, a TEMA BEM heat exchanger with 285 Stainless Steel 304 tubes of 6.706~m length was designed. This configuration delivers the required process duty of 3.41~MW while satisfying all hydraulic pressure drop and fouling constraints.
+
+\subsection{HTRI Specification Sheet -- Base Case (25{,}000 kg/hr)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.75\textheight, keepaspectratio]{f1.png}
+    \caption{HTRI Heat Exchanger Specification Sheet -- Base Case (25{,}000 kg/hr).}
+    \label{fig:tema_base}
+\end{figure}
+
+\subsection{HTRI Output Summary -- Base Case}
+
+Design: Horizontal Multipass Flow TEMA BEM Shell With Single-Segmental Baffles. No Data Check Messages (see Runtime Message Report for Warning Messages).
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Process Conditions} & \textbf{Hot Shellside (LP-Steam)} & \textbf{Cold Tubeside (Process)} \\
+\midrule
+Flow Rate (kg/s) & 1.5686 & 6.9444 \\
+Inlet/Outlet Vapor Fraction (Wt.) & 1.0000 / 0.0000 & 0.0000 / 0.5000 \\
+Inlet/Outlet Temperature ($^\circ$C) & 138.94 / 137.61 & 70.00 / 111.33 \\
+Inlet Pressure / Avg (kPa) & 350.00 / 343.51 & 700.00 / 690.00 \\
+$\Delta P$ Calculated / Allowable (kPa) & 12.974 / 30.000 & 19.999 / 30.000 \\
+Fouling Resistance (m$^2$-K/W) & 0.000180 & 0.000350 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{ll|ll}
+\toprule
+\multicolumn{4}{c}{\textbf{Exchanger Performance}} \\
+\midrule
+Shell $h$ (W/m$^2$-K) & 16{,}090 & Actual $U$ (W/m$^2$-K) & 814.46 \\
+Tube $h$ (W/m$^2$-K) & 2971.9 & Required $U$ (W/m$^2$-K) & 683.40 \\
+Hot Regime & Transition & Duty (MW) & 3.4069 \\
+Cold Regime & Transition & Effective Area (m$^2$) & 131.04 \\
+EMTD ($^\circ$C) & 38.0 & Overdesign (\%) & 19.18 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{ll|ll}
+\toprule
+\multicolumn{2}{c}{\textbf{Shell Geometry}} & \multicolumn{2}{c}{\textbf{Baffle Geometry}} \\
+\midrule
+TEMA Type & BEM & Baffle Type & Single-Segmental \\
+Shell ID (mm) & 584.20 & Baffle Cut (\% Dia.) & 25 \\
+Series / Parallel & 1 / 1 & Central Spacing (mm) & 232.97 \\
+Orientation (deg) & 0.00 & Crosspasses & 24 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{ll|ll}
+\toprule
+\multicolumn{2}{c}{\textbf{Tube Geometry}} & \multicolumn{2}{c}{\textbf{Nozzles}} \\
+\midrule
+Tube Type & Plain & Shell Inlet / Outlet (mm) & 205.00 / 102.26 \\
+Tube OD (mm) & 22.225 & Shell Nozzle Heights (In/Out) & 28.36 / 15.13 mm \\
+Tube Length (m) & 6.706 & Tube Inlet / Outlet (mm) & 77.93 / 205.00 \\
+Pitch Ratio / Layout & 1.3300 / $30^\circ$ & Tube Pass Count & 2 \\
+Tube Count & 285 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lc}
+\toprule
+\multicolumn{2}{c}{\textbf{Thermal Resistance Breakdown (\%)}} \\
+\midrule
+Shell Condensing Film & 5.06 \\
+Tube Boiling Film & 33.82 \\
+Fouling Resistance & 49.84 \\
+Tube Metal Wall & 11.28 \\
+\bottomrule
+\end{tabular}
+\qquad
+\begin{tabular}{lcc}
+\toprule
+\multicolumn{3}{c}{\textbf{Velocities (m/s)}} \\
+\midrule
+  & Min & Max \\
+Tubeside & 0.24 & 10.50 \\
+Crossflow & 0.19 & 13.74 \\
+Window & 0.026 & 13.75 \\
+\bottomrule
+\end{tabular}
+\qquad
+\begin{tabular}{lc}
+\toprule
+\multicolumn{2}{c}{\textbf{Flow Fractions}} \\
+\midrule
+Stream A & 0.198 \\
+Stream B & 0.470 \\
+Stream C & 0.100 \\
+Stream E & 0.149 \\
+Stream F & 0.083 \\
+\bottomrule
+\end{tabular}
+\caption{HTRI Output Summary -- Base Case (25{,}000 kg/hr).}
+\label{tab:base_output_summary}
+\end{table}
+
+\section{Performance Analysis Under Increased Capacity (Part B)}
+
+\subsection{Comparison of Design Data}
+
+Table~\ref{tab:expansion_comparison} presents a side-by-side comparison between the baseline design (25{,}000 kg/hr) and the debottlenecked case (30{,}000 kg/hr). In this analysis, tube diameter and tube length were held constant to isolate the net impact of the throughput increase.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Parameter} & \textbf{Base Design} & \textbf{Expanded Design} & \textbf{\% Change / Engineering Notes} \\
+\midrule
+Tubeside Mass Flow Rate & 25{,}000 kg/hr & 30{,}000 kg/hr & +20.0\% \\
+Thermal Duty ($Q$) & 3.407 MW & 4.086 MW & +19.9\% (Directly proportional) \\
+Tube Outer Diameter & 22.225 mm & 22.225 mm & Fixed (Standard) \\
+Tubeside Passes & 2 passes & 2 passes & Fixed (Maintains velocity) \\
+Total Tube Count & 285 & 333 & Increased to provide required area \\
+Tubeside Pressure Drop & 19.99 kPa & 21.56 kPa & Modest increase ($< 30\text{ kPa}$ allowable) \\
+Overall Heat Transfer Coeff. & 814.5 W/m$^2$K & 823.49 W/m$^2$K & +1.1\% (Enhanced convective turbulence) \\
+Overdesign Margin & 19.18\% & 17.86\% & Maintained at safe operational levels \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of thermal-hydraulic data between base and increased-capacity operations.}
+\label{tab:expansion_comparison}
+\end{table}
+
+\subsection{Technical Analysis of Results}
+
+\subsubsection{Thermal Capability at High Flow Rate}
+
+Software convergence indicates that when the flow rate is scaled to 30{,}000~kg/hr:
+\begin{itemize}
+\item \textbf{Thermal Duty:} Expands to 4.086~MW, achieving the target outlet vapor fraction ($x = 0.50$).
+\item \textbf{Overdesign Margin:} Remains robust at 17.86\%. This confirms that the unit operates reliably under expanded capacity while retaining adequate surplus area to absorb long-term fouling.
+\end{itemize}
+
+\subsubsection{Hydraulic Behavior and Pressure Losses}
+
+\begin{itemize}
+\item \textbf{Tubeside Pressure Drop:} Evaluated at 21.56~kPa, well below the allowable limit of 30.0~kPa.
+\item \textbf{Fluid Velocity:} The in-tube velocity (5.10~m/s max mixture velocity) remains within allowable erosion and vibration thresholds, maintaining a high convective film coefficient.
+\end{itemize}
+
+\subsection{HTRI Specification Sheet -- Increased-Capacity Case (30{,}000 kg/hr)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.75\textheight, keepaspectratio]{f2.png}
+    \caption{HTRI Heat Exchanger Specification Sheet -- Increased-Capacity Case (30{,}000 kg/hr).}
+    \label{fig:tema_expanded}
+\end{figure}
+
+\subsection{HTRI Output Summary -- Increased-Capacity Case}
+
+Design: Horizontal Multipass Flow TEMA BEM Shell With Single-Segmental Baffles. No Data Check Messages (see Runtime Message Report for Warning Messages).
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Process Conditions} & \textbf{Hot Shellside (LP-Steam)} & \textbf{Cold Tubeside (Process)} \\
+\midrule
+Flow Rate (kg/s) & 1.8819 & 8.3333 \\
+Inlet/Outlet Vapor Fraction (Wt.) & 1.0000 / 0.0000 & 0.0000 / 0.5000 \\
+Inlet/Outlet Temperature ($^\circ$C) & 138.94 / 137.75 & 70.00 / 111.25 \\
+Inlet Pressure / Avg (kPa) & 350.00 / 344.21 & 700.00 / 689.22 \\
+$\Delta P$ Calculated / Allowable (kPa) & 11.572 / 30.000 & 21.561 / 30.000 \\
+Fouling Resistance (m$^2$-K/W) & 0.000180 & 0.000350 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{ll|ll}
+\toprule
+\multicolumn{4}{c}{\textbf{Exchanger Performance}} \\
+\midrule
+Shell $h$ (W/m$^2$-K) & 15{,}854 & Actual $U$ (W/m$^2$-K) & 823.49 \\
+Tube $h$ (W/m$^2$-K) & 3078.6 & Required $U$ (W/m$^2$-K) & 698.71 \\
+Hot Regime & Transition & Duty (MW) & 4.0863 \\
+Cold Regime & Transition & Effective Area (m$^2$) & 152.97 \\
+EMTD ($^\circ$C) & 38.2 & Overdesign (\%) & 17.86 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{ll|ll}
+\toprule
+\multicolumn{2}{c}{\textbf{Shell Geometry}} & \multicolumn{2}{c}{\textbf{Baffle Geometry}} \\
+\midrule
+TEMA Type & BEM & Baffle Type & Single-Segmental \\
+Shell ID (mm) & 635.00 & Baffle Cut (\% Dia.) & 25 \\
+Series / Parallel & 1 / 1 & Central Spacing (mm) & 264.43 \\
+Orientation (deg) & 0.00 & Crosspasses & 21 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{ll|ll}
+\toprule
+\multicolumn{2}{c}{\textbf{Tube Geometry}} & \multicolumn{2}{c}{\textbf{Nozzles}} \\
+\midrule
+Tube Type & Plain & Shell Inlet / Outlet (mm) & 258.88 / 102.26 \\
+Tube OD (mm) & 22.225 & Shell Nozzle Heights (In/Out) & 40.30 / 21.25 mm \\
+Tube Length (m) & 6.706 & Tube Inlet / Outlet (mm) & 77.93 / 258.88 \\
+Pitch Ratio / Layout & 1.3300 / $30^\circ$ & Tube Pass Count & 2 \\
+Tube Count & 333 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lc}
+\toprule
+\multicolumn{2}{c}{\textbf{Thermal Resistance Breakdown (\%)}} \\
+\midrule
+Shell Condensing Film & 5.19 \\
+Tube Boiling Film & 33.01 \\
+Fouling Resistance & 50.39 \\
+Tube Metal Wall & 11.40 \\
+\bottomrule
+\end{tabular}
+\qquad
+\begin{tabular}{lcc}
+\toprule
+\multicolumn{3}{c}{\textbf{Velocities (m/s)}} \\
+\midrule
+  & Min & Max \\
+Tubeside & 0.24 & 10.94 \\
+Crossflow & 0.20 & 13.48 \\
+Window & 0.027 & 13.71 \\
+\bottomrule
+\end{tabular}
+\qquad
+\begin{tabular}{lc}
+\toprule
+\multicolumn{2}{c}{\textbf{Flow Fractions}} \\
+\midrule
+Stream A & 0.198 \\
+Stream B & 0.470 \\
+Stream C & 0.106 \\
+Stream E & 0.139 \\
+Stream F & 0.087 \\
+\bottomrule
+\end{tabular}
+\caption{HTRI Output Summary -- Increased-Capacity Case (30{,}000 kg/hr).}
+\label{tab:expanded_output_summary}
+\end{table}
+
+\section{Response to the Project Question: Linearity of Area vs. Flow Rate}
+
+\textbf{Question:} Is the relationship between the percentage increase in process flow rate and the required heat transfer surface area strictly linear ($+20\%$ flow $\to +20\%$ area)?
+
+\textbf{Analysis and Answer:} No, the relationship is sub-linear. The required heat transfer area increases by only $+16.74\%$ ($131.04\text{ m}^2 \to 152.97\text{ m}^2$) for a $+20.0\%$ expansion in throughput.
+
+Governing formulation:
+\begin{equation}
+Q = U \cdot A \cdot \Delta T_{\text{LM}}
+\end{equation}
+
+\begin{enumerate}
+\item Increasing process flow rate by 20\% proportionally increases the thermal duty $Q$ by approximately 20\%.
+\item Simultaneously, higher mass flux elevates fluid velocity inside the tubes, which increases the Reynolds number ($Re$).
+\item Because the convective boiling coefficient obeys $h_i \propto Re^{0.8}$, higher turbulence increases $h_{\text{tube}}$ from 2971.9 to 3078.6~W/m$^2$K, which in turn raises the overall heat transfer coefficient $U$ from 814.5 to 823.5~W/m$^2$K.
+\item Because the overall heat transfer coefficient $U$ increases, the required heat transfer surface area $A$ does not need to scale by the full 20\%.
+\end{enumerate}
+
+\textbf{Conclusion:} Capacity expansion improves the convective transport coefficient, causing the required area growth slope to be lower than the mass throughput increase ($dA/d\dot{m} < A_0/\dot{m}_0$).
+
+
+\section{Review of Error and Warning Messages (Part C)}
+
+\begin{quote}
+\textit{``The calculated or specified terminal temperatures are impossible. Check the specified physical properties and process conditions, and rerun the case. Run Failed.''}
+\end{quote}
+
+\textbf{Resolution of Pressure and Temperature Inconsistency:} The software encountered terminal temperature contradictions during initial thermodynamic calculations. Specifying operating pressures consistently in Pascal units and re-verifying stream thermodynamic property curves eliminated this fatal error.
+
+\begin{quote}
+\textit{``Wavy stratified flow and partial dryout are expected in horizontal tubes. We recommend increasing flow rate or reducing tube diameter to avoid stratified flow because of its poor heat transfer performance and high uncertainty in predicting boiling heat transfer coefficients in this flow regime.''}
+\end{quote}
+
+\textbf{Resolution of Stratified Flow and Dryout Warning:} Selecting a 2-pass tube arrangement increased in-tube liquid-vapor velocity, maintaining an annular/intermittent flow regime and avoiding poor wetted-perimeter heat transfer associated with wavy stratified flow.
+
+\begin{quote}
+\textit{``Impingement rod width ratio has been reduced to fit the array into the shell while permitting a one-half diameter bundle of tubes.''}
+\end{quote}
+
+\textbf{Correction by Adjusting Impingement Protection:} To mitigate shellside inlet erosive forces ($\rho V^2 > 1000\text{ kg/m}\cdot\text{s}^2$), impingement rods were introduced. The rod diameter ratio was adjusted to fit the array into the shell while preserving bundle entrance area.
+
+\begin{quote}
+\textit{``Unspecified channelside gasket -- defaulting to gasket code 5054 -- Kammprofile.''}
+\end{quote}
+
+\textbf{Channel Gasket Definition:} Resolved by assigning gasket code 5054 (Kammprofile metal core with flexible graphite facing), which matches high-pressure sour service criteria.
+
+\begin{quote}
+\textit{``ASME Section VIII Div. 1 Code was used to ESTIMATE all pressure vessel dimensions and weights. The dimensions in this report cannot be used to fabricate the vessel.''}
+\end{quote}
+
+This is a standard informational disclaimer from HTRI stating that mechanical shell thicknesses and vessel weights are preliminary estimates for thermal simulation and must be confirmed via structural code calculations (such as PVElite).
+
+\begin{quote}
+\textit{``Transition boiling has been predicted in at least one increment on the tube side. To confirm, check tubeside monitor for increments in transition boiling.''}
+\end{quote}
+
+This message indicates localized transition between nucleate and film boiling due to elevated wall heat fluxes. Because the mean temperature driving force is moderate ($\text{EMTD} \approx 38^\circ\text{C}$), local wall heat fluxes remain safely below critical heat flux ($q'' < q''_{\text{CHF}}$), ensuring stable operation without sustained dryout.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight, keepaspectratio]{f3.png}
+    \caption{HTRI Output.}
+    \label{fig:analysis_plot_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=0.9\textheight, keepaspectratio]{f4.png}
+    \caption{HTRI Output.}
+    \label{fig:analysis_plot_2}
+\end{figure}
+
+\section{Summary}
+
+The thermal-hydraulic design developed in this project provides a reliable solution across both operating throughputs:
+
+\begin{itemize}
+\item \textbf{Configuration:} TEMA BEM Shell-and-Tube Exchanger ($D_{\text{shell}} = 584.2\text{ mm}$ for base design, expanding to $635.0\text{ mm}$ for debottlenecked case).
+\item \textbf{Tubing:} Stainless Steel 304 plain tubes ($D_o = 22.225\text{ mm}$, length $L = 6.706\text{ m}$, 2 passes).
+\item \textbf{Base Operations (25{,}000 kg/hr):} Requires 285 tubes, transferring 3.41~MW with 19.18\% overdesign and a low pressure drop ($\Delta P_t = 19.99\text{ kPa}$, $\Delta P_s = 12.97\text{ kPa}$).
+\item \textbf{Expanded Operations (30{,}000 kg/hr):} Debottlenecked to 333 tubes, transferring 4.09~MW with 17.86\% overdesign and safe hydraulic margins ($\Delta P_t = 21.56\text{ kPa} < 30\text{ kPa}$).
+\end{itemize}
+
+\end{document}
